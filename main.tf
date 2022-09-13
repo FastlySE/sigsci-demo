@@ -377,7 +377,8 @@ resource "sigsci_corp_list" "ofac" {
     type = "country"
     entries = [
         "CN",
-        "RU",
+        "RU"
+	"SY",
     ]
 }
 
