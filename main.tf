@@ -413,6 +413,6 @@ resource "sigsci_corp_rule" "ofac" {
     signal = "corp.ofac" 
   }
     depends_on = [
-    sigsci_corp_signal_tag.ofac
+    sigsci_corp_list.ofac
   ]
 }
