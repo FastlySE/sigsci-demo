@@ -376,7 +376,7 @@ resource "sigsci_corp_list" "ofac" {
     name = "OFAC Countries"
     type = "country"
     entries = [
-        "IR",
+        "RU",
         "SY",
         "SD",
         "KP",
