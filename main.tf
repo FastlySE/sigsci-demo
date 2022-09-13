@@ -369,7 +369,7 @@ corp_scope       = "global"
 
 resource "sigsci_corp_signal_tag" "ofac" {
   short_name  = "ofac"
-  description = "Countries on OFAC list"
+  description = "Blocked Countries"
 }
 
 resource "sigsci_corp_list" "ofac" {
