@@ -432,7 +432,6 @@ resource "sigsci_corp_list" "domain-list" {
 	"overseerr.mediakumo.com",
 	"plex.mediakumo.com",
 	"*.mediakumo.com",
-	"
     ]
 }
 
