@@ -451,4 +451,8 @@ resource "sigsci_corp_rule" "domain-rule" {
     type   = "addSignal"
     signal = "corp.domain-request" 
   }
+  depends_on = [
+  sigsci_corp_list.domain-list
+  ]	
+
 }
