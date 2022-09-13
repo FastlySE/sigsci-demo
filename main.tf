@@ -367,18 +367,24 @@ corp_scope       = "global"
 }
 #### end robots.txt
 
-resource "sigsci_corp_signal_tag" "ofac" {
-  short_name  = "ofac"
-  description = "Blocked Countries"
-}
+### Start of Country block lists
 
 resource "sigsci_corp_list" "ofac" {
-    name = "Blocked Countries"
+    name = "OFAC Countries"
     type = "country"
     entries = [
-        "CN",
-        "RU",
-	"SY",
+        "IR",
+        "SY",
+        "SD",
+        "KP",
+        "BY",
+        "CI",
+        "CU",
+        "CD",
+        "IQ",
+        "LR",
+        "MM",
+        "ZW",
     ]
 }
 
