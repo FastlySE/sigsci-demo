@@ -373,7 +373,7 @@ resource "sigsci_corp_signal_tag" "ofac" {
 }
 
 resource "sigsci_corp_list" "ofac" {
-    name = "OFAC Countries"
+    name = "Blocked Countries"
     type = "country"
     entries = [
         "RU",
@@ -397,7 +397,7 @@ resource "sigsci_corp_rule" "ofac" {
   corp_scope = "global"
   enabled = true
   group_operator = "all"
-  reason = "OFAC Country Blocking Rule"
+  reason = "Country Blocking Rule"
   expiration = ""
 
   conditions {
