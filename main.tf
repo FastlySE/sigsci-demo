@@ -224,7 +224,7 @@ resource "sigsci_corp_rule" "sus-login-rule" {
         value    = "POST"
     }
   depends_on = [
-  sigsci_corp_rule.sus-login-rule
+  sigsci_corp_signal_tag.sus-login
   ]
 }
 #### end login discovery
