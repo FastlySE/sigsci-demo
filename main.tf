@@ -426,10 +426,13 @@ resource "sigsci_corp_list" "domain-list" {
     name = "Domain List"
     type = "wildcard"
     entries = [ // Change values in this list to reflect your domain
-        "fastlylab.com",
-        "*.fastlylab.com",
+        "owasp.fastlylab.com",
+	"www.fastlylab.com",
+	"*.fastlylab.com",
 	"overseerr.mediakumo.com",
+	"plex.mediakumo.com",
 	"*.mediakumo.com",
+	"
     ]
 }
 
