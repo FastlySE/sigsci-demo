@@ -419,7 +419,7 @@ resource "sigsci_corp_rule" "ofac" {
 
 resource "sigsci_corp_signal_tag" "domain-signal" {
   short_name  = "domain-request"
-  description = "Tagging requests to domain"
+  description = "Tagging requests to the domain"
 }
 
 resource "sigsci_corp_list" "domain-list" {
