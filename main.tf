@@ -44,6 +44,92 @@ resource "sigsci_corp_signal_tag" "attack-sus-src" {
 
 ##Cut
 
+resource "sigsci_corp_rule" "attack-sus-src-rule" {
+    corp_scope       = "global"
+    enabled          = true
+    group_operator   = "all"
+    reason           = "Attacks from suspicious sources"
+    site_short_names = []
+    type             = "request"
+    expiration       = ""
+
+    actions {
+        type = "block"
+    }
+    actions {
+        signal = "corp.attack-sus-src"
+        type   = "addSignal"
+    }
+
+    conditions {
+        field          = "signal"
+        group_operator = "any"
+        operator       = "exists"
+        type           = "multival"
+
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "BACKDOOR"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "CMDEXE"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "SQLI"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "TRAVERSAL"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "USERAGENT"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "XSS"
+        }
+    }
+    conditions {
+        field          = "signal"
+        group_operator = "any"
+        operator       = "exists"
+        type           = "multival"
+
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "SANS"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "SIGSCI-IP"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "TORNODE"
+        }
+    }
+}
 
 
 #### end attack from suspicious sources
