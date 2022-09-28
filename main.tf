@@ -42,6 +42,8 @@ resource "sigsci_corp_signal_tag" "attack-sus-src" {
   description = "Attacks from suspicious sources"
 }
 
+##Cut
+
 resource "sigsci_corp_rule" "attack-sus-src-rule" {
     corp_scope       = "global"
     enabled          = true
