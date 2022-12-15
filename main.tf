@@ -47,7 +47,7 @@ resource "sigsci_corp_signal_tag" "attack-sus-src" {
 
 resource "sigsci_corp_signal_tag" "bad-ua" {
   short_name  = "bad-ua"
-  description = "Known bad User Agents"
+  description = "Known bad User Agents block"
 }
 
 resource "sigsci_corp_list" "bad-ua" {
