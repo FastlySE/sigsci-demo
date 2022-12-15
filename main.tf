@@ -95,7 +95,101 @@ resource "sigsci_corp_rule" "bad-ua" {
 
 
 #### start login discovery
+# Signal for suspected login attempts
+resource "sigsci_corp_signal_tag" "sus-login" {
+  short_name      = "sus-login"
+  description     = "Make sure these requests are visible in your ATO dashboard or customize the rule to avoid adding this Signal to rules."
+}
 
+# Add a signal when there is a suspected login
+resource "sigsci_corp_rule" "sus-login-rule" {
+    corp_scope       = "global"
+    enabled          = true
+    group_operator   = "all"
+    reason           = "Add signal for suspected logins"
+    site_short_names = []
+    type             = "request"
+    expiration = ""
+    actions {
+        signal = "corp.sus-login"
+        type   = "addSignal"
+    }
+    conditions {
+        group_operator = "any"
+        type           = "group"
+
+        conditions {
+            field          = "postParameter"
+            group_operator = "any"
+            operator       = "exists"
+            type           = "multival"
+
+            conditions {
+                field    = "name"
+                operator = "contains"
+                type     = "single"
+                value    = "email"
+            }
+            conditions {
+                field    = "name"
+                operator = "equals"
+                type     = "single"
+                value    = "/pass"
+            }
+            conditions {
+                field    = "name"
+                operator = "contains"
+                type     = "single"
+                value    = "passwd"
+            }
+            conditions {
+                field    = "name"
+                operator = "contains"
+                type     = "single"
+                value    = "password"
+            }
+            conditions {
+                field    = "name"
+                operator = "contains"
+                type     = "single"
+                value    = "phone"
+            }
+            conditions {
+                field    = "name"
+                operator = "equals"
+                type     = "single"
+                value    = "/user"
+            }
+            conditions {
+                field    = "name"
+                operator = "contains"
+                type     = "single"
+                value    = "username"
+            }
+        }
+        conditions {
+            field    = "path"
+            operator = "contains"
+            type     = "single"
+            value    = "/auth"
+        }
+        conditions {
+            field    = "path"
+            operator = "contains"
+            type     = "single"
+            value    = "/login"
+        }
+    }
+    conditions {
+        field    = "method"
+        operator = "equals"
+        type     = "single"
+        value    = "POST"
+    }
+  depends_on = [
+  sigsci_corp_signal_tag.sus-login
+  ]
+}
 #### end login discovery
 
 
