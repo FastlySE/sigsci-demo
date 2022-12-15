@@ -417,5 +417,6 @@ resource "sigsci_corp_rule" "bad-ua" {
     type = "addSignal"
     signal = "corp.bad-ua" 
   }
+}
 
 }
