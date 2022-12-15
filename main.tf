@@ -86,6 +86,9 @@ resource "sigsci_corp_rule" "bad-ua" {
     type = "addSignal"
     signal = "corp.bad-ua" 
   }
+  depends_on = [
+  sigsci_corp_signal_tag.bad-ua
+  ]
 }
 
 #### end attack from suspicious sources
