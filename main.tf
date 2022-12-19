@@ -42,8 +42,7 @@ resource "sigsci_corp_signal_tag" "attack-sus-src" {
   description = "Attacks from suspicious sources"
 }
 
-##Cut
-
+##Cut for Demo
 
 
 #### end cut
