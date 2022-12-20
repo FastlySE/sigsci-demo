@@ -102,8 +102,7 @@ resource "sigsci_corp_rule" "api-misuse" {
     type             = "request"
     expiration = ""
     actions {
-        signal = "corp.api-misuse"
-        type   = "addSignal"
+        type   = "block"
     }
     conditions {
         group_operator = "any"
