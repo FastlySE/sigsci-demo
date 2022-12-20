@@ -93,6 +93,7 @@ resource "sigsci_corp_rule" "bad-ua" {
 
 #### End  cut
 
+### API Misuse example. Make API Readonly and Add signal for misuse attemps.
 resource "sigsci_corp_signal_tag" "readonly-api" {
   short_name  = "readonly-api"
   description = "Signal for attempted API misuse"
@@ -126,7 +127,7 @@ resource "sigsci_corp_rule" "api-misuse" {
     	}
         conditions {
         field    = "path"
-        operator = "contains"
+        operator = "equals"
         type     = "single"
         value    = "/v2/api/inventory"
         }
