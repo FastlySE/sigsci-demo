@@ -44,7 +44,7 @@ resource "sigsci_corp_signal_tag" "attack-sus-src" {
 
 ##Cut for Demo
 
-#### End cut
+#### End  cut
 
 
 #### start login discovery
