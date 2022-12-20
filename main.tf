@@ -98,11 +98,15 @@ resource "sigsci_corp_rule" "api-misuse" {
     corp_scope       = "global"
     enabled          = true
     group_operator   = "all"
-    reason           = "Add signal for suspected api misuse attempt"
+    reason           = "Add rule to make API endpoint readonly"
     type             = "request"
     expiration = ""
     actions {
-        type   = "block"
+    type = "block"
+    }
+    actions {
+    type = "addSignal"
+    signal = "corp.readonly-api" 
     }
     conditions {
         group_operator = "any"
