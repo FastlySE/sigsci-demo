@@ -93,6 +93,12 @@ resource "sigsci_corp_rule" "bad-ua" {
 
 #### End  cut
 
+resource "sigsci_corp_signal_tag" "readonly-api" {
+  short_name  = "readonly-api"
+  description = "Signal for attempted API misuse"
+}
+
+
 # Add a signal when there is an API misused
 resource "sigsci_corp_rule" "api-misuse" {
     corp_scope       = "global"
