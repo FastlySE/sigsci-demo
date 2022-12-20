@@ -127,7 +127,7 @@ resource "sigsci_corp_rule" "api-misuse" {
     	}
         conditions {
         field    = "path"
-        operator = "equals"
+        operator = "contains"
         type     = "single"
         value    = "/v2/api/inventory"
         }
