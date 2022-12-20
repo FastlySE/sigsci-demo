@@ -35,12 +35,7 @@ provider "sigsci" {
   auth_token = "${var.SIGSCI_TOKEN}"
 }
 
-#### start attack from suspicious sources
-# Add a tag for attacks from known suspicious sources
-resource "sigsci_corp_signal_tag" "attack-sus-src" {
-  short_name  = "attack-sus-src"
-  description = "Attacks from suspicious sources"
-}
+
 
 ##Cut for Demo
 
