@@ -93,6 +93,37 @@ resource "sigsci_corp_rule" "bad-ua" {
 
 #### End  cut
 
+# Add a signal when there is an API misused
+resource "sigsci_corp_rule" "api-misuse" {
+    corp_scope       = "global"
+    enabled          = true
+    group_operator   = "all"
+    reason           = "Add signal for suspected api misuse attempt"
+    type             = "request"
+    expiration = ""
+    actions {
+        signal = "corp.api-misuse"
+        type   = "addSignal"
+    }
+    conditions {
+        group_operator = "any"
+        type           = "group"
+
+        conditions {
+        field    = "method"
+        operator = "equals"
+        type     = "single"
+        value    = "POST"
+    	}
+        conditions {
+        field    = "path"
+        operator = "contains"
+        type     = "single"
+        value    = "/inventory"
+        }
+    }
+
+}
 
 #### start login discovery
 # Signal for suspected login attempts
