@@ -578,4 +578,15 @@ resource "sigsci_site_alert" "any-attack-1-min" {
     threshold          = 10
 }
 
+resource "sigsci_site_alert" "abnormal-traffic" {
+    action             = "flagged"
+    enabled            = true
+    interval           = 1
+    long_name          = "any attack - 1 min"
+    site_short_name    = "${var.SIGSCI_SITE}"
+    skip_notifications = false
+    tag_name           = "corp.abnormal-traffic"
+    threshold          = 10
+}
+
 #### end site alerts
