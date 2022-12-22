@@ -224,7 +224,66 @@ resource "sigsci_corp_rule" "api-misuse" {
 }
 ### End API Misuse Section
 
+#### start any-attack
+resource "sigsci_corp_rule" "any-attack-signal-rule" {
+    corp_scope       = "global"
+    enabled          = true
+    group_operator   = "all"
+    reason           = "Any attack signal"
+    site_short_names = []
+    type             = "request"
+    expiration       = ""
 
+    actions {
+        signal = "corp.any-attack-signal"
+        type   = "addSignal"
+    }
+
+    conditions {
+        field          = "signal"
+        group_operator = "any"
+        operator       = "exists"
+        type           = "multival"
+
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "BACKDOOR"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "CMDEXE"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "SQLI"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "TRAVERSAL"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "USERAGENT"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "XSS"
+        }
+    }
+}
+### end any-attack
 
 
 #### start login discovery
