@@ -400,8 +400,7 @@ resource "sigsci_corp_rule" "sus-card-input-rule" {
 }
 #### end card-input discovery
 
-
-
+#### Start OFAC country rule 
 
 resource "sigsci_corp_signal_tag" "ofac" {
   short_name  = "ofac"
@@ -409,10 +408,10 @@ resource "sigsci_corp_signal_tag" "ofac" {
 }
 
 resource "sigsci_corp_list" "ofac" {
-    name = "Blocked Countries"
+    name = "OFAC Countries"
     type = "country"
     entries = [
-        "RU",
+        "IR",
         "SY",
         "SD",
         "KP",
@@ -433,14 +432,14 @@ resource "sigsci_corp_rule" "ofac" {
   corp_scope = "global"
   enabled = true
   group_operator = "all"
-  reason = "Country Blocking Rule"
+  reason = "OFAC Country Blocking Rule"
   expiration = ""
 
   conditions {
     type     = "single"
     field    = "country"
     operator = "inList"
-    value = "corp.ofac"
+    value = "corp.ofac-countries"
   }
 
   actions {
@@ -451,10 +450,12 @@ resource "sigsci_corp_rule" "ofac" {
     type = "addSignal"
     signal = "corp.ofac" 
   }
-  depends_on = [
-  sigsci_corp_list.ofac
-  ]	
 }
+
+
+#### End OFAC Country Rule ####
+
+
 
 resource "sigsci_corp_signal_tag" "domain-signal" {
   short_name  = "domain-request"
