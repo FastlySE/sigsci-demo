@@ -300,7 +300,7 @@ resource "sigsci_site_signal_tag" "owasp-attack-signal" {
   description     = "OWASP Signal Tag"
 }
 
-resource "sigsci_site_rule" "OWASP-attack-signal-rule" {
+resource "sigsci_site_rule" "owasp-attack-signal-rule" {
     enabled          = true
     type             = "request"
     group_operator   = "all"
@@ -357,6 +357,9 @@ resource "sigsci_site_rule" "OWASP-attack-signal-rule" {
             value    = "XSS"
         }
     }
+  depends_on = [
+  sigsci_site_signal_tag.owasp-attack-signal
+  ]
 }
 
 ### end OWASP attack rule
