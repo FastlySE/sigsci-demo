@@ -295,7 +295,7 @@ resource "sigsci_corp_rule" "any-attack-signal-rule" {
 ### start OWASP-Attack rule site specific
 
 resource "sigsci_site_signal_tag" "owasp-attack-signal" {
-  site_short_name = sigsci_site.personal-apps
+  site_short_name = personal-apps
   name            = "OWASP signal tag"
   description     = "OWASP Signal Tag"
 }
