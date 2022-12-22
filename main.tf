@@ -451,6 +451,9 @@ resource "sigsci_corp_rule" "ofac" {
     type = "addSignal"
     signal = "corp.ofac" 
   }
+  depends_on = [
+  sigsci_corp_list.ofac
+  ]	
 }
 
 resource "sigsci_corp_signal_tag" "domain-signal" {
