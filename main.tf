@@ -329,6 +329,18 @@ resource "sigsci_site_rule" "owasp-attack-rule" {
             operator = "equals"
             type     = "single"
             value    = "CMDEXE"
+        }        
+	 conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "SCANNER"
+        }
+	 conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "TORNODE"
         }
         conditions {
             field    = "signalType"
