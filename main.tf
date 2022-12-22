@@ -401,68 +401,7 @@ resource "sigsci_corp_rule" "sus-card-input-rule" {
 #### end card-input discovery
 
 
-#### start robots.txt
 
-# create list to disallow based on robots.txt
-# run the script get-robots-txt.sh first to generate the terraform variable file in main.auto.tfvars
-resource "sigsci_corp_list" "robots-txt-disallow-list" {
-  name        = "robots-txt disallow list"
-  type        = "wildcard"
-  description = "list of wildcard paths disallowed from robots.txt"
-  entries = "${var.ROBOTS_DISALLOW_LIST}"
-}
-
-# Signal for discovering when bots are submitting requests to disallowed robots.txt resources
-resource "sigsci_corp_signal_tag" "robots-txt-disallow" {
-  short_name      = "robots-txt-disallow"
-  description     = "Requests made by bots to disallowed pages defined in robots.txt"
-}
-
-# create rule to disallow based on robots.txt
-resource "sigsci_corp_rule" "robots-txt-disallow-rule" {
-corp_scope       = "global"
-    enabled          = true
-    group_operator   = "all"
-    reason           = "Requests made by bots to disallowed paths in robots.txt"
-    site_short_names = []
-    type             = "request"
-    expiration       = ""
-
-    actions {
-        signal = "corp.robots-txt-disallow"
-        type   = "addSignal"
-    }
-
-    conditions {
-        field          = "signal"
-        group_operator = "any"
-        operator       = "exists"
-        type           = "multival"
-
-        conditions {
-            field    = "signalType"
-            operator = "equals"
-            type     = "single"
-            value    = "SUSPECTED-BAD-BOT"
-        }
-        conditions {
-            field    = "signalType"
-            operator = "equals"
-            type     = "single"
-            value    = "SUSPECTED-BOT"
-        }
-    }
-    conditions {
-        field    = "path"
-        operator = "inList"
-        type     = "single"
-        value    = "corp.robots-txt-disallow-list"
-    }
-	depends_on = [
-	sigsci_corp_signal_tag.robots-txt-disallow
-  ]
-}
-#### end robots.txt
 
 resource "sigsci_corp_signal_tag" "ofac" {
   short_name  = "ofac"
