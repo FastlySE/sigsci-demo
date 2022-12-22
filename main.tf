@@ -225,6 +225,13 @@ resource "sigsci_corp_rule" "api-misuse" {
 ### End API Misuse Section
 
 #### start any-attack
+
+resource "sigsci_corp_signal_tag" "any-attack-signal" {
+  short_name      = "any-attack-signal"
+  description     = "Flag on attack signals"
+}
+
+
 resource "sigsci_corp_rule" "any-attack-signal-rule" {
     corp_scope       = "global"
     enabled          = true
