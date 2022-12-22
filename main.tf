@@ -2,7 +2,7 @@ terraform {
   required_providers {
     sigsci = {
       source = "signalsciences/sigsci"
-	  version = "1.0.1"
+	  version = "1.2.2"
     }
   }
 }
