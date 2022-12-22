@@ -203,7 +203,7 @@ resource "sigsci_corp_rule" "api-misuse" {
     signal = "corp.readonly-api" 
     }
     conditions {
-        group_operator = "any"
+        group_operator = "all"
         type           = "group"
 
         conditions {
