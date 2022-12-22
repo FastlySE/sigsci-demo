@@ -224,7 +224,7 @@ resource "sigsci_corp_rule" "api-misuse" {
 }
 ### End API Misuse Section
 
-#### start any-attack
+#### start any-attack-corporate
 
 resource "sigsci_corp_signal_tag" "any-attack-signal" {
   short_name      = "any-attack-signal"
@@ -290,8 +290,74 @@ resource "sigsci_corp_rule" "any-attack-signal-rule" {
         }
     }
 }
-### end any-attack
+### end any-attack-corporate
 
+### start OWASP-Attack rule site specific
+
+resource "sigsci_site_signal_tag" "owasp-attack-signal" {
+  short_name      = "owasp-attack-signal"
+  description     = "Flag on attack signals"
+}
+
+resource "sigsci_site_rule" "OWASP-attack-signal-rule" {
+    enabled          = true
+    type             = "request"
+    group_operator   = "all"
+    reason           = "Any OWASP attack signal"
+    site_short_names = [personal-apps]
+    expiration       = ""
+
+    actions {
+        signal = "site.OWASP-attack-signal"
+        type   = "addSignal"
+    }
+
+    conditions {
+        field          = "signal"
+        group_operator = "any"
+        operator       = "exists"
+        type           = "multival"
+
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "BACKDOOR"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "CMDEXE"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "SQLI"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "TRAVERSAL"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "USERAGENT"
+        }
+        conditions {
+            field    = "signalType"
+            operator = "equals"
+            type     = "single"
+            value    = "XSS"
+        }
+    }
+}
+
+### end OWASP attack rule
 
 #### start login discovery
 # Signal for suspected login attempts
