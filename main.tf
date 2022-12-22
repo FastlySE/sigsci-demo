@@ -572,7 +572,7 @@ resource "sigsci_site_alert" "any-attack-1-min" {
     enabled            = true
     interval           = 1
     long_name          = "Any attack - 1 min"
-    site_short_name    = "${var.SIGSCI_SITE}"
+    site_short_name    = "homelab-websites"
     skip_notifications = false
     tag_name           = "corp.any-attack-signal"
     threshold          = 10
@@ -583,7 +583,7 @@ resource "sigsci_site_alert" "abnormal-traffic" {
     enabled            = true
     interval           = 1
     long_name          = "Abnormal Traffic"
-    site_short_name    = "${var.SIGSCI_SITE}"
+    site_short_name    = "personal-apps"
     skip_notifications = false
     tag_name           = "corp.abnormal-traffic"
     threshold          = 10
