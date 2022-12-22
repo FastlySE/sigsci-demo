@@ -662,7 +662,7 @@ resource "sigsci_site_alert" "abnormal-traffic" {
     action             = "flagged"
     enabled            = true
     interval           = 1
-    long_name          = "Abnormal Traffic"
+    long_name          = "Abnormal Traffic Alerts"
     site_short_name    = "personal-apps"
     skip_notifications = false
     tag_name           = "corp.abnormal-traffic"
