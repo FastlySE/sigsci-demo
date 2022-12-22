@@ -35,8 +35,7 @@ provider "sigsci" {
   auth_token = "${var.SIGSCI_TOKEN}"
 }
 
-##Cut for Demo
-
+## Start of Bad User Agent Rule
 
 resource "sigsci_corp_signal_tag" "bad-ua" {
   short_name  = "bad-ua"
@@ -84,7 +83,7 @@ resource "sigsci_corp_rule" "bad-ua" {
   ]
 }
 
-#### End  cut
+## End of Bad User Agent Rule
 
 #### start attack from suspicious sources
 # Add a tag for attacks from known suspicious sources
