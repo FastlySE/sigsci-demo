@@ -178,7 +178,7 @@ resource "sigsci_corp_rule" "attack-sus-src-rule" {
         }
     }
 }
-#### end attack from suspicious sources
+#### end attack from suspicious source
 
 ### API Misuse example. Make API Readonly and Add signal for misuse attemps.
 resource "sigsci_corp_signal_tag" "readonly-api" {
