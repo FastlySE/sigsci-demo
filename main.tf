@@ -407,7 +407,7 @@ resource "sigsci_corp_signal_tag" "ofac" {
   description = "Countries on OFAC list"
 }
 
-resource "sigsci_corp_list" "ofac" {
+resource "sigsci_corp_list" "ofac-countries" {
     name = "OFAC Countries"
     type = "country"
     entries = [
