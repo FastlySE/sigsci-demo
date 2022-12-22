@@ -452,7 +452,7 @@ resource "sigsci_corp_rule" "ofac" {
     signal = "corp.ofac" 
   }
   depends_on = [
-  sigsci_corp_list.ofac
+  sigsci_corp_list.ofac-countries
   ]	
 }
 
