@@ -35,8 +35,6 @@ provider "sigsci" {
   auth_token = "${var.SIGSCI_TOKEN}"
 }
 
-
-
 ##Cut for Demo
 
 
