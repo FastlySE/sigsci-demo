@@ -309,7 +309,7 @@ resource "sigsci_site_rule" "owasp-attack-rule" {
   expiration      = ""
 	
     actions {
-        signal = "site.owasp-attack-signal"
+        signal = "owasp-attack-signal"
         type   = "addSignal"
     }
 
