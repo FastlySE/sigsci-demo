@@ -571,7 +571,7 @@ resource "sigsci_site_alert" "any-attack-1-min" {
     action             = "flagged"
     enabled            = true
     interval           = 1
-    long_name          = "any attack - 1 min"
+    long_name          = "Any attack - 1 min"
     site_short_name    = "${var.SIGSCI_SITE}"
     skip_notifications = false
     tag_name           = "corp.any-attack-signal"
@@ -582,7 +582,7 @@ resource "sigsci_site_alert" "abnormal-traffic" {
     action             = "flagged"
     enabled            = true
     interval           = 1
-    long_name          = "any attack - 1 min"
+    long_name          = "Abnormal Traffic"
     site_short_name    = "${var.SIGSCI_SITE}"
     skip_notifications = false
     tag_name           = "corp.abnormal-traffic"
