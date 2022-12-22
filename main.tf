@@ -305,7 +305,8 @@ resource "sigsci_site_rule" "OWASP-attack-signal-rule" {
     type             = "request"
     group_operator   = "all"
     reason           = "Any OWASP attack signal"
-    site_short_names = [personal-apps]
+    site_short_name  = "personal-apps"
+
     expiration       = ""
 
     actions {
