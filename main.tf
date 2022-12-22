@@ -35,10 +35,7 @@ provider "sigsci" {
   auth_token = "${var.SIGSCI_TOKEN}"
 }
 
-
-
 ##Cut for Demo
-
 
 resource "sigsci_corp_signal_tag" "bad-ua" {
   short_name  = "bad-ua"
