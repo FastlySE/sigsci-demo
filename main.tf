@@ -440,7 +440,7 @@ resource "sigsci_corp_rule" "ofac" {
     type     = "single"
     field    = "country"
     operator = "inList"
-    value = "corp.ofac-countries"
+    value = "corp.ofac"
   }
 
   actions {
@@ -452,7 +452,7 @@ resource "sigsci_corp_rule" "ofac" {
     signal = "corp.ofac" 
   }
   depends_on = [
-  sigsci_corp_list.ofac-countries
+  sigsci_corp_list.ofac
   ]	
 }
 
