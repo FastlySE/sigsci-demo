@@ -300,15 +300,14 @@ resource "sigsci_site_signal_tag" "owasp-attack-signal" {
   description     = "OWASP Signal Tag"
 }
 
-resource "sigsci_site_rule" "owasp-attack-signal-rule" {
-    enabled          = true
-    type             = "request"
-    group_operator   = "all"
-    reason           = "Any OWASP attack signal"
-    site_short_name  = "personal-apps"
-
-    expiration       = ""
-
+resource "sigsci_site_rule" "owasp-attack-rule" {
+  site_short_name = "personal-apps"
+  type            = "request"
+  group_operator  = "all"
+  enabled         = "true"
+  reason          = "OWASP Attacks"
+  expiration      = ""
+	
     actions {
         signal = "site.owasp-attack-signal"
         type   = "addSignal"
