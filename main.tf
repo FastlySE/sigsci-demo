@@ -564,7 +564,37 @@ resource "sigsci_corp_rule" "domain-rule" {
   depends_on = [
   sigsci_corp_list.domain-list
   ]	
-	
-
-
 }
+
+#### start site alerts
+resource "sigsci_site_alert" "any-attack-1-min" {
+    action             = "flagged"
+    enabled            = true
+    interval           = 1
+    long_name          = "any attack - 1 min"
+    site_short_name    = "${var.SIGSCI_SITE}"
+    skip_notifications = false
+    tag_name           = "corp.any-attack-signal"
+    threshold          = 10
+}
+resource "sigsci_site_alert" "any-attack-10-min" {
+    action             = "flagged"
+    enabled            = true
+    interval           = 10
+    long_name          = "any attack - 10 min"
+    site_short_name    = "${var.SIGSCI_SITE}"
+    skip_notifications = false
+    tag_name           = "corp.any-attack-signal"
+    threshold          = 50
+}
+resource "sigsci_site_alert" "any-attack-60-min" {
+    action             = "flagged"
+    enabled            = true
+    interval           = 60
+    long_name          = "any attack - 60 min"
+    site_short_name    = "${var.SIGSCI_SITE}"
+    skip_notifications = false
+    tag_name           = "corp.any-attack-signal"
+    threshold          = 200
+}
+#### end site alerts
