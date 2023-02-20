@@ -646,6 +646,121 @@ resource "sigsci_corp_rule" "domain-rule" {
   ]	
 }
 
+### Start Anomaly Signals
+
+resource "sigsci_corp_signal_tag" "anomaly-attack" {
+  short_name  = "anomaly-attack"
+  description = "Identification of attacks from Anomaly traffic"
+}
+
+resource "sigsci_corp_rule" "anomaly-attack" {
+  site_short_names = []
+  type            = "request"
+  corp_scope      = "global"
+  group_operator  = "all"
+  enabled         = true
+  reason          = "Blocking attacks from Anomaly Traffic"
+  expiration      = ""
+
+
+  conditions {
+    type     = "multival"
+    field    = "signal"
+    group_operator = "any"
+    operator = "exists"
+    conditions {
+      field = "signalType"
+      operator = "equals"
+      type = "single"
+      value = "ABNORMALPATH"
+    }
+    conditions {
+      field = "signalType"
+      operator = "equals"
+      type = "single"
+      value = "CODEINJECTION"
+    }
+    conditions {
+      field = "signalType"
+      operator = "equals"
+      type = "single"
+      value = "DOUBLEENCODING"
+    }
+    conditions {
+      field = "signalType"
+      operator = "equals"
+      type = "single"
+      value = "DUPLICATE-HEADERS"
+    }
+    conditions {
+      field = "signalType"
+      operator = "equals"
+      type = "single"
+      value = "NOTUTF8"
+    }
+    conditions {
+      field = "signalType"
+      operator = "equals"
+      type = "single"
+      value = "MALFORMED-DATA"
+    }
+     conditions {
+      field = "signalType"
+      operator = "equals"
+      type = "single"
+      value = "NOUA"
+    }
+     conditions {
+      field = "signalType"
+      operator = "equals"
+      type = "single"
+      value = "PRIVATEFILE"
+    }
+     conditions {
+      field = "signalType"
+      operator = "equals"
+      type = "single"
+      value = "RESPONSESPLIT"
+    }
+  }
+
+    conditions {
+    type     = "multival"
+    field    = "signal"
+    group_operator = "any"
+    operator = "exists"
+    conditions {
+      field = "signalType"
+      operator = "equals"
+      type = "single"
+      value = "SIGSCI-IP"
+    }
+    conditions {
+      field = "signalType"
+      operator = "equals"
+      type = "single"
+      value = "TORNODE"
+    }
+    conditions {
+      field = "signalType"
+      operator = "equals"
+      type = "single"
+      value = "SANS"
+    }
+  }
+
+  actions {
+    type = "block"
+  }
+    actions {
+    type = "addSignal"
+    signal = "corp.malicious-attacker" 
+  }
+}
+
+## End Anomoly Signals
+
+
 #### start site alerts
 resource "sigsci_site_alert" "any-attack-1-min" {
     action             = "flagged"
