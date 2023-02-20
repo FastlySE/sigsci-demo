@@ -723,38 +723,12 @@ resource "sigsci_corp_rule" "anomaly-attack" {
       value = "RESPONSESPLIT"
     }
   }
-
-    conditions {
-    type     = "multival"
-    field    = "signal"
-    group_operator = "any"
-    operator = "exists"
-    conditions {
-      field = "signalType"
-      operator = "equals"
-      type = "single"
-      value = "SIGSCI-IP"
-    }
-    conditions {
-      field = "signalType"
-      operator = "equals"
-      type = "single"
-      value = "TORNODE"
-    }
-    conditions {
-      field = "signalType"
-      operator = "equals"
-      type = "single"
-      value = "SANS"
-    }
-  }
-
   actions {
     type = "block"
   }
     actions {
     type = "addSignal"
-    signal = "corp.malicious-attacker" 
+    signal = "corp.anomaly-attack" 
   }
 }
 
