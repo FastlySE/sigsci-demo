@@ -723,9 +723,6 @@ resource "sigsci_corp_rule" "anomaly-attack" {
       value = "RESPONSESPLIT"
     }
   }
-  actions {
-    type = "block"
-  }
     actions {
     type = "addSignal"
     signal = "corp.anomaly-attack" 
